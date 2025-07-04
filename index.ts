@@ -25,8 +25,11 @@ program
     await addPdf(file);
 
     console.log('🔮 The mystic threads weave through dimensions, revealing hidden truths...');
-    const answer = await ask(question);
-    console.log(answer);
+
+    const stream = await ask(question);
+    for await (const chunk of stream) {
+      process.stdout.write(chunk.text);
+    }
 
     process.exit(0);
   });

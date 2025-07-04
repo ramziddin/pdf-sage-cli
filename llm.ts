@@ -4,15 +4,21 @@ import { similaritySearch } from "./embeddings";
 import { config } from "./config";
 
 export async function ask(question: string) {
+  console.time("similaritySearch");
   const results = await similaritySearch(question);
   const context = results.map(result => result.pageContent).join("\n\n");
+  console.timeEnd("similaritySearch");
+
   const promptValue = await promptTemplate.invoke({
     context,
     question,
   });
-  const response = await model.invoke(promptValue);
-  const textResponse = response.content.toString().trim();
-  return textResponse;
+
+  console.time("model");
+  const response = await model.stream(promptValue);
+  console.timeEnd("model");
+
+  return response;
 }
 
 const model = new ChatOllama({
