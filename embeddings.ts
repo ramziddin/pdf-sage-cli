@@ -25,6 +25,7 @@ const embeddings = new OllamaEmbeddings({
 export const vectorStore = await PGVectorStore.initialize(embeddings, {
   postgresConnectionOptions: getPgConnectionOptions(),
   tableName: config.pgVectorEmbeddingsTableName,
+  dimensions: config.ollamaEmbeddingDimensions,
 });
 
 await vectorStore.createHnswIndex({
