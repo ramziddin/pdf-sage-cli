@@ -6,10 +6,8 @@ To install dependencies:
 bun install
 ```
 
-To run:
+To run the script it needs Ollama and PostgreSQL db with pgvector plugin. The `docker-compose.yml` file already contains everything that's needed. Run `docker compose up`, wait for the ollama models to be pulled, then run:
 
 ```bash
-bun run index.ts
+bun index.ts
 ```
-
-This project was created using `bun init` in bun v1.2.17. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
