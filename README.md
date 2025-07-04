@@ -6,8 +6,18 @@ To install dependencies:
 bun install
 ```
 
-To run the script it needs Ollama and PostgreSQL db with pgvector plugin. The `docker-compose.yml` file already contains everything that's needed. Run `docker compose up`, wait for the ollama models to be pulled, then run:
+## Running
 
 ```bash
-bun index.ts
+docker compose up
+bun index.ts --file ./data/nke-10k-2023.pdf --question "Tell me about Nike's 2023 stocks
+```
+
+## macOS
+
+Ollama's macOS client is optimized for Apple Sillicon. So it's best to use the macOS client, instead of the Ollama's Docker image.
+
+```bash
+docker compose up pgvector # run only pgvector
+bun index.ts --file ./data/nke-10k-2023.pdf --question "Tell me about Nike's 2023 stocks
 ```
