@@ -1,4 +1,5 @@
 import { Command } from "commander";
+import { vectorStore } from "./embeddings";
 
 const program = new Command();
 
@@ -31,7 +32,7 @@ program
       process.stdout.write(chunk.text);
     }
 
-    process.exit(0);
+    await vectorStore.end();
   });
 
 program.parse(process.argv);
