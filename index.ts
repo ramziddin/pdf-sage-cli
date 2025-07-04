@@ -27,6 +27,8 @@ program
     console.log('🔮 The mystic threads weave through dimensions, revealing hidden truths...');
     const answer = await ask(question);
     console.log(answer);
+
+    process.exit(0);
   });
 
 program.parse(process.argv);
