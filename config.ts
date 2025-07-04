@@ -1,6 +1,7 @@
 export const config = {
   ollamaModel: "mistral",
   ollamaEmbeddingModel: "nomic-embed-text",
+  ollamaEmbeddingDimensions: 768,
   ollamaBaseUrl: "http://localhost:11434",
 
   pgHost: "localhost",
