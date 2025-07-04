@@ -1,0 +1,27 @@
+services:
+  pgvector:
+    image: pgvector/pgvector:pg17
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d postgres" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - pgvector:/var/lib/postgresql/data
+  ollama:
+    image: ollama/ollama:0.9.5
+    entrypoint: ["/bin/sh", "app/scripts/ollama.sh"]
+    ports:
+      - 11435:11435
+    volumes:
+      - .:/app
+      - ollama:/usr/share/ollama
+volumes:
+  pgvector:
+  ollama:

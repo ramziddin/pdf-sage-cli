@@ -1,0 +1,19 @@
+{
+  "name": "pdf-sage-cli",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@langchain/community": "^0.3.47",
+    "@langchain/ollama": "^0.2.3",
+    "langchain": "^0.3.29",
+    "pdf-parse": "^1.1.1",
+    "pg": "^8.16.3"
+  }
+}
