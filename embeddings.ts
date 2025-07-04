@@ -13,7 +13,8 @@ export async function addPdf(path: string) {
 }
 
 export async function similaritySearch(query: string) {
-  return vectorStore.similaritySearch(query);
+  const k = 3;
+  return vectorStore.similaritySearch(query, k);
 }
 
 const embeddings = new OllamaEmbeddings({
@@ -21,9 +22,13 @@ const embeddings = new OllamaEmbeddings({
   model: config.ollamaEmbeddingModel,
 });
 
-const vectorStore = await PGVectorStore.initialize(embeddings, {
+export const vectorStore = await PGVectorStore.initialize(embeddings, {
   postgresConnectionOptions: getPgConnectionOptions(),
   tableName: config.pgVectorEmbeddingsTableName,
+});
+
+await vectorStore.createHnswIndex({
+  dimensions: config.ollamaEmbeddingDimensions,
 });
 
 const splitter = new RecursiveCharacterTextSplitter({
