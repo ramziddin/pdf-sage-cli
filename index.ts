@@ -1,5 +1,4 @@
 import { Command } from "commander";
-import { vectorStore } from "./embeddings";
 
 const program = new Command();
 
@@ -19,7 +18,7 @@ program
       return console.log("Speak thy query, mortal! The oracle awaits your question to divine the answers! 🔮");
     }
 
-    const { addPdf } = await import("./embeddings");
+    const { addPdf, vectorStore } = await import("./embeddings");
     const { ask } = await import("./llm");
 
     console.log(`🌟 Channeling the ethereal energies from ${file}...`);
